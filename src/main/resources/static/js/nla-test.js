@@ -3,7 +3,7 @@
  * Created by mark on 29/1/17.
  */
 
-function loadBooksForLender(lenderId, button) {
+function loadBooksForLender(lenderId) {
 
     $.ajax({
 
@@ -24,8 +24,17 @@ function loadBooksForLender(lenderId, button) {
     }).success(function (json) {
         $.each(json, function (idx, book) {
 
-            $('#row-' + lenderId).append($("<tr>").append($("<td>").text(json[idx].title + " " + json[idx].author + " " + json[idx].isbn)));
-            $(button).prop('disabled', true);
+            var divId = "#div-lender-" + lenderId;
+            var divParent = $(divId);
+
+            /** display the book table showing all books */
+            $(divParent).find("#book-table").show();
+
+            /** add a row for the book details from the lenders on loan books data */
+            $(divParent).find("#lender-loans").append($("<tr>").append($("<td>").text(json[idx].title).append($("</td>")).append($("<td>")).append(json[idx].author).append($("</td>")).append($("<td>")).append(json[idx].isbn)).append($("</td>")).append($("</tr>"));
+
+            /** Singleshot show books - disable button */
+            $(divParent).find("button").prop('disabled', true);
         });
     });
 }

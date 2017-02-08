@@ -25,7 +25,7 @@ public class MainViewController extends WebMvcConfigurerAdapter implements Error
     LenderRepository lenderRepository;
 
 
-    @RequestMapping(value = "/allLenders", method = RequestMethod.GET)
+    @RequestMapping(value = "/allLendeprs", method = RequestMethod.GET)
     public String getLenders(Model model) {
 
         model.addAttribute("lenders", lenderRepository.findAll());

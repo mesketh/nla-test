@@ -24,24 +24,36 @@
 
 
 <#list lenders>
-<table>
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Lenders of books</div>
+    <div class="panel-body">Click on the lender to see their current loans...</div>
+
+    <!-- Lender list -->
     <#items as lender>
-        <tr id="row-${lender.id}">
-            <td>
-            ${lender.name}
-            </td>
-            <td>
-            ${lender.emailAddress}
-            </td>
-            <td>
-                <button id="button-${lender.id}" onclick="loadBooksForLender(${lender.id}, this)">Show books loaned</button>
-            </td>
+        <ul class="list-group">
+            <div id="div-lender-${lender.id}">
+                <button type="button" class="list-group-item"
+                        onclick="loadBooksForLender(${lender.id})">${lender.name}</button>
+                <div id="book-table" style="display:none">
+                    <table>
+                        <thead>
+                        <tr>
+                            <td>Title</td>
+                            <td>Author</td>
+                            <td>ISBN</td>
+                        </tr>
+                        </thead>
+                        <tbody id="lender-loans">
+                        <!-- empty body - populated via ajax upon lender list item button being pressed -->
+                        </tbody>
 
-        </tr>
-
+                    </table>
+                </div>
+            </div>
+        </ul>
     </#items>
-</table>
-
+</div>
 <#else>
 <p>No Lenders found.
 </#list>

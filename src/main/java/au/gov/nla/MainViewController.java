@@ -14,6 +14,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+
 
 /**
  * Created by mark on 29/1/17.
@@ -24,14 +26,31 @@ public class MainViewController extends WebMvcConfigurerAdapter implements Error
     @Autowired
     LenderRepository lenderRepository;
 
+    @Autowired
+    BookRepository bookRepository;
 
-    @RequestMapping(value = "/allLendeprs", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/allLenders", method = RequestMethod.GET)
     public String getLenders(Model model) {
 
         model.addAttribute("lenders", lenderRepository.findAll());
 
         return "lender-view";
     }
+
+    @RequestMapping(value = "/allBooks", method = RequestMethod.GET)
+    public String getBooks(Model model) {
+
+        model.addAttribute("books", bookRepository.findAll());
+
+        return "all-books";
+    }
+
+    @RequestMapping(path = "/", method = GET)
+    public String getHomePage() {
+        return "redirect:/index.html";
+    }
+
 
     @RequestMapping(value = "/error")
     public String handleError(Model model, HttpServletRequest request) {
@@ -65,6 +84,8 @@ public class MainViewController extends WebMvcConfigurerAdapter implements Error
     public int getOrder() {
         return Ordered.HIGHEST_PRECEDENCE;
     }
+
+
 }
 
 

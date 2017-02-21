@@ -65,6 +65,8 @@ public class Lender {
 
     }
 
+    public String getBooksOnLoanCount() { return String.valueOf(booksOnLoan.size()); }
+
     public Set<Book> getBooksOnLoan() {
         return booksOnLoan;
     }

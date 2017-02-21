@@ -12,6 +12,14 @@ RESTful services implemented to support
 * List of all lenders in loan system.
 * Listing all books for a selected lender
 
+
+### How to run
+
+```mvn clean package```
+
+```mvn spring-boot:run```
+
+
 ***
 
 **Author**: __Mark Hesketh__ 

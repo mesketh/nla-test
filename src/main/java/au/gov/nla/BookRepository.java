@@ -14,3 +14,4 @@ public interface BookRepository extends PagingAndSortingRepository<Book, Long> {
     public List<Book> findAll();
 
 }
+

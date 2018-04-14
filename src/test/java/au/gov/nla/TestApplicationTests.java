@@ -5,6 +5,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.JUnitRestDocumentation;
@@ -22,6 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@AutoConfigureRestDocs(outputDir = "target/generated-snippets")
 public class TestApplicationTests {
 
     @Rule
@@ -47,7 +49,9 @@ public class TestApplicationTests {
             this.mockMvc.perform(get("/booksFor").param("lenderId", "1").accept(MediaType.APPLICATION_JSON))
                     .andExpect(status().isOk())
                     .andDo(document("books-loaned", responseFields(
-                            fieldWithPath("[].title").description("The title of the book"), fieldWithPath("[].isbn").description("The ISBN of the book"), fieldWithPath("[].author").description("The author of the book"))))
+                            fieldWithPath("[].title").description("The title of the book"), fieldWithPath("[].isbn")
+                                    .description("The ISBN of the book"), fieldWithPath("[].author").description("The" +
+                                    " author of the book"))))
             ;
         } catch (Exception e) {
 //            Assert.fail("Failed to access index.html");

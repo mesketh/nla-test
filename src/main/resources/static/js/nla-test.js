@@ -10,7 +10,7 @@ function loadBooksForLender(lenderId) {
     $.ajax({
 
         // The URL for the request
-        url: "/booksFor",
+        url: "/rusapi/booksFor",
 
         // The data to send (will be converted to a query string)
         data: {
